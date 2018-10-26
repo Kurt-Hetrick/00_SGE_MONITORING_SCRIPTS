@@ -6,8 +6,8 @@ REFRESH=$3 # HOW OFTEN YOU WANT THE SCREEN TO REFRESH IN SECONDS
 
 while sleep $REFRESH ;\
 do clear ;\
-awk 'BEGIN {FS=":"} $12!=0||$13!=0 {print $4,$2,$5,$6,strftime("%F.%H-%M-%S",$9),strftime("%F.%H-%M-%S",$10),strftime("%F.%H-%M-%S",$11),$12,$13}' \
-/cm/shared/apps/sge/var/default/common/accounting \
+tail -n 500000 /cm/shared/apps/sge/var/default/common/accounting \
+| awk 'BEGIN {FS=":"} $12!=0||$13!=0 {print $4,$2,$5,$6,strftime("%F.%H-%M-%S",$9),strftime("%F.%H-%M-%S",$10),strftime("%F.%H-%M-%S",$11),$12,$13}' \
 | grep $USER \
 | tail -n $ROWS \
 | sort -k 4nr \
