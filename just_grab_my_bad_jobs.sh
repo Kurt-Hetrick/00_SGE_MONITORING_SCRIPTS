@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROWS=$1 # HOW MANY LINES OF OUTPUT DO YOU WANT SHOW ON THE SCREEN
-USER=$2 # UNIX LOGIN USERNAME, IF YOU WANT TO SHOW ALL USERS ENTER "." FOR THIS ARGUMENT
+USER=$1 # UNIX LOGIN USERNAME, IF YOU WANT TO SHOW ALL USERS ENTER "." FOR THIS ARGUMENT
+ROWS=$2 # HOW MANY LINES OF OUTPUT DO YOU WANT SHOW ON THE SCREEN
 
 awk 'BEGIN {FS=":"} $12!=0||$13!=0 {print $4,$2,$5,$6,strftime("%F.%H-%M-%S",$9),strftime("%F.%H-%M-%S",$10),strftime("%F.%H-%M-%S",$11),$12,$13}' \
 /cm/shared/apps/sge/var/default/common/accounting \
